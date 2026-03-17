@@ -18,6 +18,8 @@ function solveEquation(a, b, c) {
   ];
 }
 
+// Задание №2
+
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
   const P = percent / 100 / 12;
   const S = amount - contribution;
