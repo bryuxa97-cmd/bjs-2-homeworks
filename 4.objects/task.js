@@ -13,18 +13,20 @@ Student.prototype.addMarks = function (...marks) {
   if (!this.marks) {
     return;
   }
-  this.marks.push(...marks);
+  for (let i = 0; i < marks.length; i++) {
+    this.marks.push(marks[i]);
+  }
 }
 
 Student.prototype.getAverage = function () {
   if (!this.marks || this.marks.length === 0) {
     return 0;
   }
-  const sumOfMarks = this.marks.reduce(function (runningTotal, mark) {
-    return runningTotal + mark;
-  }, 0);
-  const marksCount = this.marks.length;
-  return sumOfMarks / marksCount;
+  let sum = 0;
+  for (let i = 0; i < this.marks.length; i++) {
+    sum = sum + this.marks[i];
+  }
+  return sum / this.marks.length;
 }
 
 Student.prototype.exclude = function (reason) {
