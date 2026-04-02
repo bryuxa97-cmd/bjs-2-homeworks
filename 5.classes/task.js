@@ -78,29 +78,16 @@ class Library {
     }
   }
 
-  findBookBy(bookPropertyName, bookPropertyValue) {
-    for (let bookIndex = 0; bookIndex < this.books.length; bookIndex += 1) {
-      const currentBook = this.books[bookIndex];
-
-      if (currentBook[bookPropertyName] === bookPropertyValue) {
-        return currentBook;
-      }
-    }
-
-    return null;
+  findBookBy(type, value) {
+    const findResult = this.books.find((item) => item[type] === value);
+    return findResult || null;
   }
 
   giveBookByName(bookName) {
-    for (let bookIndex = 0; bookIndex < this.books.length; bookIndex += 1) {
-      const currentBook = this.books[bookIndex];
-
-      if (currentBook.name === bookName) {
-        const bookForReader = this.books.splice(bookIndex, 1)[0];
-        return bookForReader;
-      }
-    }
-
-    return null;
+    const book = this.findBookBy("name", bookName);
+    if (!book) return null;
+    this.books = this.books.filter((item) => item.name !== bookName);
+    return book;
   }
 }
 
